@@ -5,6 +5,7 @@ class ProductCategory {
     String          title
     String          titleInt
     String          productClass = "Asset"
+    boolean         explicitContract = false
     ProductCategory parentCategory
     String          notes
     // Record stamp
@@ -28,6 +29,7 @@ class ProductCategory {
       title(blank:false, nullable:false, unique:true)
       titleInt(blank:false, nullable:false, unique:true)
       productClass(nullable:false, inList:["Asset", "Liability", "Contigent"])
+      explicitContract()
       parentCategory(blank:true, nullable:true)
       modelProducts(nullable:true)
       notes(blank:true, nullable:true, size:0..65535)
