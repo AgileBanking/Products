@@ -87,7 +87,7 @@
                           <ul>
                             <li>User: ${System.getProperty("user.name")}</li>
                             <li>Time zone: ${TimeZone.getDefault().getDisplayName()}</li>
-                            <li>Server Time: ${new Date().getDateTimeString()}</li>
+                            <li>Server Time: ${new Date().getDateTimeString()}</li>      
                           </ul>
 			<h1>Application Status</h1>
 			<ul>
@@ -101,10 +101,13 @@
                             <li>Tag Libraries: ${grailsApplication.tagLibClasses.size()}</li>
 			</ul>
                         <h1>Server</h1>
+                        <h1>Servers</h1>
                         <ul>
                             <li>Local Host Name: ${InetAddress.localHost.hostName}</li>
                             <li>IP Address     : ${InetAddress.localHost.hostAddress}</li> 
+                            <!--
                             <li>Host Name      : ${InetAddress.localHost.canonicalHostName}</li>
+                            -->
                         </ul>
 			<h1>Installed Plugins</h1>
                             <ul>

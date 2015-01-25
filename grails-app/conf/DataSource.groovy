@@ -19,28 +19,30 @@ hibernate {
 //    cache.region.factory_class = 'org.hibernate.cache.ehcache.EhCacheRegionFactory' // Hibernate 4
 }
 
+
 // environment specific settings
 environments {
     development {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
 //            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
-//            url = "jdbc:mysql://localhost:3306/products"   
-            url = "jdbc:mysql://products.db:3306/products?useUnicode=yes&characterEncoding=UTF-8" 
+            url = "jdbc:mysql://products.db:3306/products?useUnicode=yes&characterEncoding=UTF-8"   
+//            url = "jdbc:mysql://" + "nslookup products.db control.lan".execute().text.split(/(\n)/)[4].split(/(:)/)[1].trim() + ":3306/products?useUnicode=yes&characterEncoding=UTF-8" 
         }
     }
     test {
         dataSource {
             dbCreate = "update"
             url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
-//            url = "jdbc:mysql://localhost:3306/commons" 
+//            url = "jdbc:mysql://localhost:3306/products" 
         }
     }
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
-//            url = "jdbc:mysql://localhost:3306/commons" 
+//            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            url = "jdbc:mysql://products.db:3306/products?useUnicode=yes&characterEncoding=UTF-8"   
+//            url = "jdbc:mysql://localhost:3306/products" 
             properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                jmxEnabled = true
