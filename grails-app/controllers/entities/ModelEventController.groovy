@@ -20,7 +20,7 @@ class ModelEventController {
     ]
 
     def index(Integer max) { 
-        println "Hello from INDEX"
+//        println "Hello from INDEX"
         params.max = Math.min(max ?: 10, 100) 
         params.recStatus = (params.recStatus ? params.recStatus.toLowerCase() : "Active").capitalize() 
         if (params.recStatus == "All" ) { 
@@ -59,7 +59,7 @@ class ModelEventController {
         modelEventInstance.save flush:true
 
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'modelEventInstance.label', default: 'ModelEvent'), modelEventInstance.id])
                 redirect modelEventInstance
             }
@@ -86,7 +86,7 @@ class ModelEventController {
         modelEventInstance.save flush:true
 
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'ModelEvent.label', default: 'ModelEvent'), modelEventInstance.id])
                 redirect modelEventInstance
             }
@@ -106,7 +106,7 @@ class ModelEventController {
         modelEventInstance.save flush:true
     
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'ModelEvent.label', default: 'ModelEvent'), modelEventInstance.id])
                 redirect action:"index", method:"GET"
             }
@@ -127,7 +127,7 @@ class ModelEventController {
         modelEventInstance.save flush:true 
 
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'ModelEvent.label', default: 'ModelEvent'), modelEventInstance.id])
                 redirect action:"index", method:"GET"
             }
@@ -139,7 +139,7 @@ class ModelEventController {
 
     protected void notFound() {
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'modelEventInstance.label', default: 'ModelEvent'), params.id])
                 redirect action: "index", method: "GET"
             }

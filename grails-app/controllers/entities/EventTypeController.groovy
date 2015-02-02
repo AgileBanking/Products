@@ -59,7 +59,7 @@ class EventTypeController {
         eventTypeInstance.save flush:true
 
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'eventTypeInstance.label', default: 'EventType'), eventTypeInstance.id])
                 redirect eventTypeInstance
             }
@@ -86,7 +86,7 @@ class EventTypeController {
         eventTypeInstance.save flush:true
 
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'EventType.label', default: 'EventType'), eventTypeInstance.id])
                 redirect eventTypeInstance
             }
@@ -106,7 +106,7 @@ class EventTypeController {
         eventTypeInstance.save flush:true
     
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'EventType.label', default: 'EventType'), eventTypeInstance.id])
                 redirect action:"index", method:"GET"
             }
@@ -128,7 +128,7 @@ class EventTypeController {
         eventTypeInstance.save flush:true 
 
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.undeleted.message', args: [message(code: 'EventType.label', default: 'EventType'), eventTypeInstance.id])
                 redirect action:"index", method:"GET"
             }
@@ -140,7 +140,7 @@ class EventTypeController {
 
     protected void notFound() {
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'eventTypeInstance.label', default: 'EventType'), params.id])
                 redirect action: "index", method: "GET"
             }

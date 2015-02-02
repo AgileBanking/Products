@@ -15,58 +15,38 @@ grails.project.groupId = appName // change this to alter the default package nam
 
 // The ACCEPT header will not be used for content negotiation for user agents containing the following strings (defaults to the 4 major rendering engines)
 grails.mime.disable.accept.header.userAgents = ['Gecko', 'WebKit', 'Presto', 'Trident']
-grails.mime.types = [
-    all:           '*/*',
-    json:          ['application/json', 'text/json', 'json'],
-    xml:           ['text/xml', 'application/xml', 'xml'],
-    html:          ['text/html','application/xhtml+xml'],
+grails.mime.types = [ // the first one is the default format
+    all:           '*/*', // 'all' maps to '*' or the first available format in withFormat
     atom:          'application/atom+xml',
     css:           'text/css',
     csv:           'text/csv',
     form:          'application/x-www-form-urlencoded',
+    html:          ['text/html','application/xhtml+xml'],
     js:            'text/javascript',
+    json:          ['application/json', 'text/json'],
     multipartForm: 'multipart/form-data',
     rss:           'application/rss+xml',
     text:          'text/plain',
-    hal:           ['application/hal+json','application/hal+xml']
+    hal:           ['application/hal+json','application/hal+xml'],
+    xml:           ['text/xml', 'application/xml']
 ]
-grails.mime.use.accept.header = true
-
-// Include version for JSON generated output.
-//grails.converters.json.domain.include.version = true
- 
-// Include version for XML generated output.
-//grails.converters.xml.domain.include.version = true
- 
-// Include version for both XML and JSON output.
-grails.converters.domain.include.version = true
 
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
-
-grails.plugins.springsecurity.useSessionFixationPrevention = true
-
-// What URL patterns should be processed by the resources plugin
-grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
 
 // Legacy setting for codec used to encode data with ${}
 grails.views.default.codec = "html"
 
 // The default scope for controllers. May be prototype, session or singleton.
 // If unspecified, controllers are prototype scoped.
-//grails.controllers.defaultScope = 'singleton' // Only one instance of the controller ever exists (recommended for actions as methods)
-grails.controllers.defaultScope = 'prototype' //  A new controller will be created for each request (recommended for actions as Closure properties)
-//grails.controllers.defaultScope = 'session ' //  One controller is created for the scope of a user session
-
-// Avoid session fixation (book "Programming Grails, page 242)
-grails.plugins.springsecurity.useSessionFixationPrevention = true
+grails.controllers.defaultScope = 'singleton'
 
 // GSP settings
 grails {
     views {
         gsp {
             encoding = 'UTF-8'
-            htmlcodec = 'json' // use xml escaping instead of HTML4 escaping
+            htmlcodec = 'xml' // use xml escaping instead of HTML4 escaping
             codecs {
                 expression = 'html' // escapes values inside ${}
                 scriptlet = 'html' // escapes output from scriptlets in GSPs
@@ -75,22 +55,19 @@ grails {
             }
         }
         // escapes all not-encoded output at final stage of outputting
-        filteringCodecForContentType {
-            //'text/html' = 'html'
-        }
+        // filteringCodecForContentType.'text/html' = 'html'
     }
 }
- 
+
+
 grails.converters.encoding = "UTF-8"
-grails.converters.json.default.deep = false
-grails.converters.xml.default.deep = false
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'
 
 // Set to false to use the new Grails 1.2 JSONBuilder in the render method
 grails.json.legacy.builder = false
 // enabled native2ascii conversion of i18n properties files
-grails.enable.native2ascii = false // ## true
+grails.enable.native2ascii = true
 // packages to include in Spring bean scanning
 grails.spring.bean.packages = []
 // whether to disable processing of multi part requests
@@ -99,30 +76,14 @@ grails.web.disable.multipart=false
 // request parameters to mask when logging exceptions
 grails.exceptionresolver.params.exclude = ['password']
 
-grails.resources.adhoc.excludes = ['**/WEB-INF/**','**/META-INF/**']
-
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
-grails.hibernate.cache.queries = true
+grails.hibernate.cache.queries = false
 
-// GSP settings
-grails {
-    views {
-        gsp {
-            encoding = 'UTF-8'
-            htmlcodec = 'json' // use xml escaping instead of HTML4 escaping
-            codecs {
-                expression = 'html' // escapes values inside ${}
-                scriptlet = 'html' // escapes output from scriptlets in GSPs
-                taglib = 'none' // escapes output from taglibs
-                staticparts = 'none' // escapes output from static template parts
-            }
-        }
-        // escapes all not-encoded output at final stage of outputting
-        filteringCodecForContentType {
-            //'text/html' = 'html'
-        }
-    }
-}
+// configure passing transaction's read-only attribute to Hibernate session, queries and criterias
+// set "singleSession = false" OSIV mode in hibernate configuration after enabling
+grails.hibernate.pass.readonly = false
+// configure passing read-only to OSIV session by default, requires "singleSession = false" OSIV mode
+grails.hibernate.osiv.readonly = false
 
 environments {
     development {
@@ -135,7 +96,7 @@ environments {
 }
 
 // log4j configuration
-log4j = {
+log4j.main = {
     // Example of changing the log pattern for the default console appender:
     //
     //appenders {

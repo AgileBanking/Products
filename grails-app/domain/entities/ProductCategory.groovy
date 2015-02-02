@@ -6,7 +6,7 @@ class ProductCategory {
     String          titleInt
     String          productClass = "Asset"
     boolean         explicitContract = false
-    ProductCategory parentCategory
+    ProductCategory parentCategory          // self-reference to allow a tree structute
     String          notes
     // Record stamp
     Long            userId    = 0          // person.id from Parties  (0=System)

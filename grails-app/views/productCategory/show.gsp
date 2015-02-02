@@ -59,6 +59,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${productCategoryInstance?.explicitContract}">
+				<li class="fieldcontain">
+					<span id="explicitContract-label" class="property-label"><g:message code="productCategory.explicitContract.label" default="Explicit Contract" /></span>
+					
+						<span class="property-value" aria-labelledby="explicitContract-label"><g:formatBoolean boolean="${productCategoryInstance?.explicitContract}" /></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${productCategoryInstance?.parentCategory}">
 				<li class="fieldcontain">
 					<span id="parentCategory-label" class="property-label"><g:message code="productCategory.parentCategory.label" default="Parent Category" /></span>

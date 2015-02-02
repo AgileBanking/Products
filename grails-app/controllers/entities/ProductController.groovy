@@ -60,7 +60,7 @@ class ProductController {
         productInstance.save flush:true
 
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'productInstance.label', default: 'Product'), productInstance.id])
                 redirect productInstance
             }
@@ -87,7 +87,7 @@ class ProductController {
         productInstance.save flush:true
 
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Product.label', default: 'Product'), productInstance.id])
                 redirect productInstance
             }
@@ -107,7 +107,7 @@ class ProductController {
         productInstance.save flush:true
     
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'Product.label', default: 'Product'), productInstance.id])
                 redirect action:"index", method:"GET"
             }
@@ -128,7 +128,7 @@ class ProductController {
         productInstance.save flush:true 
 
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.undeleted.message', args: [message(code: 'Product.label', default: 'Product'), productInstance.id])
                 redirect action:"index", method:"GET"
             }
@@ -140,7 +140,7 @@ class ProductController {
 
     protected void notFound() {
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'productInstance.label', default: 'Product'), params.id])
                 redirect action: "index", method: "GET"
             }

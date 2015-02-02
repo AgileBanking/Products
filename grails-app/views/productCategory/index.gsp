@@ -32,9 +32,9 @@
 					
 						<g:sortableColumn property="productClass" title="${message(code: 'productCategory.productClass.label', default: 'Product Class')}" />
 					
-						<th><g:message code="productCategory.parentCategory.label" default="Parent Category" /></th>
+						<g:sortableColumn property="explicitContract" title="${message(code: 'productCategory.explicitContract.label', default: 'Explicit Contract')}" />
 					
-						<g:sortableColumn property="notes" title="${message(code: 'productCategory.notes.label', default: 'Notes')}" />
+						<th><g:message code="productCategory.parentCategory.label" default="Parent Category" /></th>
 					
 					</tr>
 				</thead>
@@ -50,9 +50,9 @@
 					
 						<td>${fieldValue(bean: productCategoryInstance, field: "productClass")}</td>
 					
-						<td>${fieldValue(bean: productCategoryInstance, field: "parentCategory")}</td>
+						<td><g:formatBoolean boolean="${productCategoryInstance.explicitContract}" /></td>
 					
-						<td>${fieldValue(bean: productCategoryInstance, field: "notes")}</td>
+						<td>${fieldValue(bean: productCategoryInstance, field: "parentCategory")}</td>
 					
 					</tr>
 				</g:each>

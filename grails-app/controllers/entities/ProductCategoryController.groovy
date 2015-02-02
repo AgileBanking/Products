@@ -61,7 +61,7 @@ class ProductCategoryController {
         productCategoryInstance.save flush:true
 
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'productCategoryInstance.label', default: 'ProductCategory'), productCategoryInstance.id])
                 redirect productCategoryInstance
             }
@@ -88,7 +88,7 @@ class ProductCategoryController {
         productCategoryInstance.save flush:true
 
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'ProductCategory.label', default: 'ProductCategory'), productCategoryInstance.id])
                 redirect productCategoryInstance
             }
@@ -108,7 +108,7 @@ class ProductCategoryController {
         productCategoryInstance.save flush:true
     
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'ProductCategory.label', default: 'ProductCategory'), productCategoryInstance.id])
                 redirect action:"index", method:"GET"
             }
@@ -130,7 +130,7 @@ class ProductCategoryController {
         productCategoryInstance.save flush:true 
 
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.undeleted.message', args: [message(code: 'ProductCategory.label', default: 'ProductCategory'), productCategoryInstance.id])
                 redirect action:"index", method:"GET"
             }
@@ -143,7 +143,7 @@ class ProductCategoryController {
 
     protected void notFound() {
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'productCategoryInstance.label', default: 'ProductCategory'), params.id])
                 redirect action: "index", method: "GET"
             }

@@ -60,7 +60,7 @@ class ModelProductController {
         modelProductInstance.save flush:true
 
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'modelProductInstance.label', default: 'ModelProduct'), modelProductInstance.id])
                 redirect modelProductInstance
             }
@@ -87,7 +87,7 @@ class ModelProductController {
         modelProductInstance.save flush:true
 
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'ModelProduct.label', default: 'ModelProduct'), modelProductInstance.id])
                 redirect modelProductInstance
             }
@@ -107,7 +107,7 @@ class ModelProductController {
         modelProductInstance.save flush:true
     
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'ModelProduct.label', default: 'ModelProduct'), modelProductInstance.id])
                 redirect action:"index", method:"GET"
             }
@@ -128,7 +128,7 @@ class ModelProductController {
         modelProductInstance.save flush:true 
 
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.undeleted.message', args: [message(code: 'ModelProduct.label', default: 'ModelProduct'), modelProductInstance.id])
                 redirect action:"index", method:"GET"
             }
@@ -140,7 +140,7 @@ class ModelProductController {
 
     protected void notFound() {
         request.withFormat {
-            form {
+            form multipartForm {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'modelProductInstance.label', default: 'ModelProduct'), params.id])
                 redirect action: "index", method: "GET"
             }
